@@ -108,6 +108,7 @@
             font-size: 0.9rem;
             box-shadow: var(--shadow-md);
             z-index: 2;
+            white-space: nowrap;
         }
         
         .workshop-banner.special {
@@ -118,6 +119,39 @@
         @keyframes pulse-banner {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.05); }
+        }
+        
+        @media (max-width: 768px) {
+            .workshop-banner {
+                top: 15px;
+                right: 15px;
+                padding: 0.5rem 1rem;
+                font-size: 0.75rem;
+                border-radius: 30px;
+            }
+            
+            .workshop-banner.special {
+                font-size: 0.7rem;
+                padding: 0.5rem 0.9rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .workshop-banner {
+                position: relative;
+                top: 0;
+                right: 0;
+                display: inline-block;
+                margin-bottom: 1rem;
+                width: 100%;
+                text-align: center;
+                padding: 0.6rem 1rem;
+                font-size: 0.8rem;
+            }
+            
+            .workshop-header {
+                margin-top: 1rem;
+            }
         }
         
         .workshop-header {
