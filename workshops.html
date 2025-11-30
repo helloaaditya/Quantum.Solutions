@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Join our professional workshops on Web Development, Android Development, SEO, and Digital Marketing. Learn from industry experts at Quantum Solution.">
+    <meta name="keywords" content="workshops, web development workshop, android development training, SEO training, digital marketing course, quantum solution">
+    <meta name="author" content="Quantum Solution">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Professional Workshops - Quantum Solution">
+    <meta property="og:description" content="Learn Web Development, Android Development, SEO & More">
+    <meta property="og:type" content="website">
+    <title>Workshops - Quantum Solution | Professional Training Programs</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .workshop-hero {
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            background: var(--dark-secondary);
+            padding-top: 100px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .workshop-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-1);
+            opacity: 0.1;
+        }
+        
+        .workshops-container {
+            padding: 80px 0;
+        }
+        
+        .workshop-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .tab-btn {
+            padding: 1rem 2rem;
+            background: transparent;
+            border: 2px solid rgba(99, 102, 241, 0.3);
+            border-radius: 50px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        .tab-btn:hover,
+        .tab-btn.active {
+            background: var(--gradient-1);
+            border-color: transparent;
+            color: var(--text-primary);
+            transform: translateY(-3px);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .workshop-card {
+            background: var(--dark-secondary);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .workshop-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-glow);
+        }
+        
+        .workshop-banner {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--gradient-2);
+            color: var(--text-primary);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            box-shadow: var(--shadow-md);
+            z-index: 2;
+        }
+        
+        .workshop-banner.special {
+            background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+            animation: pulse-banner 2s infinite;
+        }
+        
+        @keyframes pulse-banner {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .workshop-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .workshop-title {
+            font-size: 1.8rem;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .workshop-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--gradient-1);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .workshop-badge.completed {
+            background: rgba(99, 102, 241, 0.2);
+            color: var(--text-muted);
+        }
+        
+        .workshop-meta {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+        
+        .workshop-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+        }
+        
+        .workshop-meta-item i {
+            color: var(--primary-color);
+        }
+        
+        .workshop-description {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        
+        .workshop-topics {
+            margin-bottom: 1.5rem;
+        }
+        
+        .workshop-topics h4 {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+        
+        .topics-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.75rem;
+            list-style: none;
+        }
+        
+        .topics-list li {
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .topics-list li i {
+            color: var(--primary-color);
+            font-size: 0.8rem;
+        }
+        
+        .workshop-price {
+            font-size: 2rem;
+            font-weight: 900;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1.5rem;
+        }
+        
+        .workshop-price.special {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+        
+        .price-original {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-decoration: line-through;
+            text-decoration-thickness: 2px;
+        }
+        
+        .price-offer {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+       
+        
+        
+        .workshop-cta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        /* Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .modal-overlay.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: var(--dark-secondary);
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-header h3 {
+            color: var(--text-primary);
+            font-size: 1.5rem;
+        }
+        
+        .modal-close {
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        
+        .modal-close:hover {
+            background: rgba(99, 102, 241, 0.1);
+            transform: rotate(90deg);
+        }
+        
+        .modal-form-container {
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .modal-form-container iframe {
+            width: 100%;
+            min-height: 600px;
+            border: none;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-muted);
+        }
+        
+        .empty-state i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-wrapper">
+                <div class="logo">
+                    <a href="index.html" style="text-decoration: none; display: flex; gap: 0.5rem;">
+                        <span class="logo-text">Quantum</span>
+                        <span class="logo-accent">Solution</span>
+                    </a>
+                </div>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="index.html#about" class="nav-link">About</a></li>
+                    <li><a href="index.html#services" class="nav-link">Services</a></li>
+                    <li><a href="index.html#portfolio" class="nav-link">Portfolio</a></li>
+                    <li><a href="workshops.html" class="nav-link active">Workshops</a></li>
+                    <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Workshop Hero Section -->
+    <section class="workshop-hero">
+        <div class="container">
+            <div class="section-header" style="position: relative; z-index: 1;">
+                <span class="section-tag">Professional Training</span>
+                <h1 class="section-title" style="font-size: 3rem;">Workshops & Training Programs</h1>
+                <p class="section-description">Learn from industry experts and enhance your skills with our comprehensive workshops</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workshops Section -->
+    <section class="workshops-container">
+        <div class="container">
+            <!-- Tabs -->
+            <div class="workshop-tabs">
+                <button class="tab-btn active" data-tab="upcoming">Upcoming Workshops</button>
+                <button class="tab-btn" data-tab="past">Past Workshops</button>
+            </div>
+
+            <!-- Upcoming Workshops -->
+            <div id="upcoming" class="tab-content active">
+                <!-- SEO Master Workshop -->
+                <div class="workshop-card">
+                    <div class="workshop-banner special">🔥 Limited Time Offer</div>
+                    <div class="workshop-header">
+                        <div>
+                            <h3 class="workshop-title">SEO Master Workshop</h3>
+                            <span class="workshop-badge">New</span>
+                        </div>
+                    </div>
+                    <div class="workshop-meta">
+                        <div class="workshop-meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span>2 Hours</span>
+                        </div>
+                        <div class="workshop-meta-item">
+                            <i class="fas fa-calendar"></i>
+                            <span>Weekend Batch</span>
+                        </div>
+                        <div class="workshop-meta-item">
+                            <i class="fas fa-users"></i>
+                            <span>100 Seats</span>
+                        </div>
+                        <div class="workshop-meta-item">
+                            <i class="fas fa-certificate"></i>
+                            <span>Certificate Provided</span>
+                        </div>
+                    </div>
+                    <p class="workshop-description">
+                        Master SEO fundamentals in just 2 hours! Learn keyword research, on-page optimization, technical SEO, and link building strategies. Perfect for beginners and professionals looking to boost their website's search engine rankings.
+                    </p>
+                    <div class="workshop-topics">
+                        <h4>What You'll Learn:</h4>
+                        <ul class="topics-list">
+                            <li><i class="fas fa-check-circle"></i> Keyword Research & Analysis</li>
+                            <li><i class="fas fa-check-circle"></i> On-Page SEO Optimization</li>
+                            <li><i class="fas fa-check-circle"></i> Technical SEO Basics</li>
+                            <li><i class="fas fa-check-circle"></i> Link Building Strategies</li>
+                            <li><i class="fas fa-check-circle"></i> Google Analytics Setup</li>
+                            <li><i class="fas fa-check-circle"></i> Content Optimization</li>
+                            <li><i class="fas fa-check-circle"></i> Local SEO Techniques</li>
+                            <li><i class="fas fa-check-circle"></i> SEO Tools & Resources</li>
+                        </ul>
+                    </div>
+                    <div class="workshop-price special">
+                        <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+                            <span class="price-original">₹499</span>
+                            <span class="price-offer">₹99 Only</span>
+                        </div>
+                    </div>
+                    <div class="workshop-cta">
+                        <button class="btn btn-primary" onclick="openBookingModal('SEO Master Workshop')">Book Now</button>
+                        <a href="index.html#contact" class="btn btn-secondary">Enquire More</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Past Workshops -->
+            <div id="past" class="tab-content">
+                <!-- Past Workshop 1 -->
+                <div class="workshop-card">
+                    <div class="workshop-header">
+                        <div>
+                            <h3 class="workshop-title">Complete Web Development Workshop</h3>
+                            <span class="workshop-badge completed">Completed</span>
+                        </div>
+                    </div>
+                    <div class="workshop-meta">
+                        <div class="workshop-meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span>40 Hours</span>
+                        </div>
+                        <div class="workshop-meta-item">
+                            <i class="fas fa-calendar"></i>
+                            <span>Completed: Jan 2024</span>
+                        </div>
+                        <div class="workshop-meta-item">
+                            <i class="fas fa-users"></i>
+                            <span>18 Students</span>
+                        </div>
+                        <div class="workshop-meta-item">
+                            <i class="fas fa-star"></i>
+                            <span>4.8/5 Rating</span>
+                        </div>
+                    </div>
+                    <p class="workshop-description">
+                        Master modern web development from scratch. Learned HTML5, CSS3, JavaScript, React, Node.js, and more. Built real-world projects with industry best practices.
+                    </p>
+                    <div class="workshop-topics">
+                        <h4>Topics Covered:</h4>
+                        <ul class="topics-list">
+                            <li><i class="fas fa-check-circle"></i> HTML5 & CSS3 Fundamentals</li>
+                            <li><i class="fas fa-check-circle"></i> JavaScript & ES6+</li>
+                            <li><i class="fas fa-check-circle"></i> React.js & Next.js</li>
+                            <li><i class="fas fa-check-circle"></i> Node.js & Express</li>
+                            <li><i class="fas fa-check-circle"></i> Database Integration</li>
+                            <li><i class="fas fa-check-circle"></i> API Development</li>
+                        </ul>
+                    </div>
+                    <div class="workshop-price">₹15,000</div>
+                </div>
+
+                <!-- Past Workshop 2 -->
+                <div class="workshop-card">
+                    <div class="workshop-header">
+                        <div>
+                            <h3 class="workshop-title">Android App Development Workshop</h3>
+                            <span class="workshop-badge completed">Completed</span>
+                        </div>
+                    </div>
+                    <div class="workshop-meta">
+                        <div class="workshop-meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span>35 Hours</span>
+                        </div>
+                        <div class="workshop-meta-item">
+                            <i class="fas fa-calendar"></i>
+                            <span>Completed: Dec 2023</span>
+                        </div>
+                        <div class="workshop-meta-item">
+                            <i class="fas fa-users"></i>
+                            <span>15 Students</span>
+                        </div>
+                        <div class="workshop-meta-item">
+                            <i class="fas fa-star"></i>
+                            <span>4.9/5 Rating</span>
+                        </div>
+                    </div>
+                    <p class="workshop-description">
+                        Built native Android applications from scratch. Learned Kotlin, Android SDK, Material Design, Firebase integration, and published apps on Google Play Store.
+                    </p>
+                    <div class="workshop-topics">
+                        <h4>Topics Covered:</h4>
+                        <ul class="topics-list">
+                            <li><i class="fas fa-check-circle"></i> Kotlin Programming</li>
+                            <li><i class="fas fa-check-circle"></i> Android Studio Setup</li>
+                            <li><i class="fas fa-check-circle"></i> UI/UX Design for Mobile</li>
+                            <li><i class="fas fa-check-circle"></i> Material Design Components</li>
+                            <li><i class="fas fa-check-circle"></i> Firebase Integration</li>
+                            <li><i class="fas fa-check-circle"></i> App Publishing</li>
+                        </ul>
+                    </div>
+                    <div class="workshop-price">₹18,000</div>
+                </div>
+
+                <!-- Past Workshop 3 -->
+                <div class="workshop-card">
+                    <div class="workshop-header">
+                        <div>
+                            <h3 class="workshop-title">E-Commerce & Shopify Development</h3>
+                            <span class="workshop-badge completed">Completed</span>
+                        </div>
+                    </div>
+                    <div class="workshop-meta">
+                        <div class="workshop-meta-item">
+                            <i class="fas fa-clock"></i>
+                            <span>25 Hours</span>
+                        </div>
+                        <div class="workshop-meta-item">
+                            <i class="fas fa-calendar"></i>
+                            <span>Completed: Nov 2023</span>
+                        </div>
+                        <div class="workshop-meta-item">
+                            <i class="fas fa-users"></i>
+                            <span>20 Students</span>
+                        </div>
+                        <div class="workshop-meta-item">
+                            <i class="fas fa-star"></i>
+                            <span>4.7/5 Rating</span>
+                        </div>
+                    </div>
+                    <p class="workshop-description">
+                        Learned to build and manage successful e-commerce stores. Mastered Shopify development, payment integration, inventory management, and digital marketing for online stores.
+                    </p>
+                    <div class="workshop-topics">
+                        <h4>Topics Covered:</h4>
+                        <ul class="topics-list">
+                            <li><i class="fas fa-check-circle"></i> Shopify Store Setup</li>
+                            <li><i class="fas fa-check-circle"></i> Theme Customization</li>
+                            <li><i class="fas fa-check-circle"></i> Liquid Template Language</li>
+                            <li><i class="fas fa-check-circle"></i> Payment Gateway Integration</li>
+                            <li><i class="fas fa-check-circle"></i> Product Management</li>
+                            <li><i class="fas fa-check-circle"></i> E-Commerce SEO</li>
+                        </ul>
+                    </div>
+                    <div class="workshop-price">₹14,000</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Register for Workshop</h3>
+                <button class="modal-close" onclick="closeBookingModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-form-container">
+                <iframe 
+                    id="workshopForm"
+                    src=""
+                    width="100%" 
+                    height="600" 
+                    frameborder="0" 
+                    marginheight="0" 
+                    marginwidth="0">
+                    Loading…
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <span class="logo-text">Quantum</span>
+                        <span class="logo-accent">Solution</span>
+                    </div>
+                    <p>Transforming ideas into quantum solutions. We create exceptional digital experiences that drive success.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li><a href="index.html#services">Services</a></li>
+                        <li><a href="index.html#portfolio">Portfolio</a></li>
+                        <li><a href="workshops.html">Workshops</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="index.html#services">Web Development</a></li>
+                        <li><a href="index.html#services">E-Commerce</a></li>
+                        <li><a href="index.html#services">SEO Services</a></li>
+                        <li><a href="index.html#services">Shopify Development</a></li>
+                        <li><a href="index.html#services">CRM Solutions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe to get updates on our latest projects and services.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your Email" required>
+                        <button type="submit" class="newsletter-btn">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Quantum Solution. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/918797223004?text=Hi%20Quantum%20Solution,%20I%20would%20like%20to%20know%20more%20about%20your%20workshops." 
+       class="whatsapp-float" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       aria-label="Contact on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+        <span class="whatsapp-tooltip">Chat with us on WhatsApp</span>
+    </a>
+
+    <script src="script.js"></script>
+    <script>
+        // Tab Switching
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tabId = btn.getAttribute('data-tab');
+                
+                // Remove active from all tabs and contents
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Add active to clicked tab and content
+                btn.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Google Form URL - Replace with your actual form ID
+        const GOOGLE_FORM_BASE = 'https://docs.google.com/forms/d/e/1FAIpQLSfh9lGB4CgnbInrK0NeYnTpSysB/viewform?embedded=true';
+
+        // Open Booking Modal with Pre-filled Data
+        function openBookingModal(workshopName) {
+            const modal = document.getElementById('bookingModal');
+            const iframe = document.getElementById('workshopForm');
+            
+            // Pre-fill workshop name in URL (Google Forms supports entry.XXXXX parameters)
+            // You'll need to get the entry ID from your Google Form
+            // Example: &entry.123456789=SEO Master Workshop
+            const encodedWorkshopName = encodeURIComponent(workshopName);
+            const formUrl = GOOGLE_FORM_BASE + '&entry.YOUR_ENTRY_ID=' + encodedWorkshopName;
+            
+            iframe.src = formUrl;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close Booking Modal
+        function closeBookingModal() {
+            const modal = document.getElementById('bookingModal');
+            const iframe = document.getElementById('workshopForm');
+            
+            modal.classList.remove('active');
+            iframe.src = '';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('bookingModal').addEventListener('click', (e) => {
+            if (e.target.id === 'bookingModal') {
+                closeBookingModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeBookingModal();
+            }
+        });
+    </script>
+</body>
+</html>

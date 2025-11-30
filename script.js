@@ -29,6 +29,39 @@ navLinks.forEach(link => {
     });
 });
 
+// Handle navigation links (both hash and page links)
+document.querySelectorAll('a[href^="#"], a[href^="index.html"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        
+        // If it's a hash link on the same page
+        if (href.startsWith('#')) {
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+        // If it's a link to index.html with hash
+        else if (href.includes('index.html#')) {
+            const hash = href.split('#')[1];
+            if (window.location.pathname.includes('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/')) {
+                e.preventDefault();
+                const target = document.querySelector('#' + hash);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+        }
+    });
+});
+
 // Active nav link on scroll
 const sections = document.querySelectorAll('section[id]');
 
