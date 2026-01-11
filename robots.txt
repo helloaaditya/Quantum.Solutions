@@ -1,5 +1,19 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://quantumsolution.com/sitemap.xml
+# Sitemap location
+Sitemap: https://quantum-solutions-indol.vercel.app/sitemap.xml
 
+# Disallow admin or private directories if any
+Disallow: /admin/
+Disallow: /private/
+Disallow: /.git/
+Disallow: /node_modules/
+
+# Allow important pages
+Allow: /
+Allow: /index.html
+Allow: /workshops.html
+
+# Crawl-delay (optional - helps prevent server overload)
+Crawl-delay: 1
